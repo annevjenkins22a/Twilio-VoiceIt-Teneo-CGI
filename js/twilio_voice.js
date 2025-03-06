@@ -122,7 +122,7 @@ class twilio_voice {
 
                 parameters["phone"] = phone;
 
-                    var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":"ivr", "arrearsContractNum":contractNum
+                    var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":"ivr", "refNum":contractNum
                                          , "arrearsAmt":arrears , "arrearsName":fname , "numMissed":numMissed, "daysSince":daysSince, "contractEmail":email};
                
 
