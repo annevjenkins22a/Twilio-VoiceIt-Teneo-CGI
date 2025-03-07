@@ -7,7 +7,7 @@ const TIE = require('@artificialsolutions/tie-api-client');
 const dotenv = require('dotenv');
 dotenv.config();
 const sessionMap = new Map();
-
+var outboundCall = false;
 
 const {
     TENEO_ENGINE_URL,
@@ -546,7 +546,7 @@ const sessionHandler = this.SessionHandler();
             var parameters = {};
             parameters["phone"] = phone;
             const url = "https://" + req.headers["host"] + "/";
-            //console.log("URL: " + url);
+            console.log("URL: " + url);
             if(userInput===undefined || userInput===null || userInput=="") {
               userInput="Hi";
             }
@@ -600,9 +600,10 @@ const sessionHandler = this.SessionHandler();
             console.log("phone: " + phone);
             if(TWILIO_MODE=="ivr") {
                 //const callSid = post.CallSid;
+                outboundCall = true;
                 const url = "https://" + req.headers["host"] + "/?phone="+phone+"&session="+teneoSessionId+"&contractNum="+contractNum+"&email="+email+"&userInput="+userInput+"&arrears="+arrears+"&fname="+fname+"&numMissed="+numMissed+"&daysSince="+daysSince;
               
-                //console.log("URL: " + url);
+                console.log("URL: " + url);
                 client.calls
                 .create({
                     url: url,
