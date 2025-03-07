@@ -611,7 +611,7 @@ const sessionHandler = this.SessionHandler();
                     from: TWILIO_OUTBOUND_NUMBER
                 })
                 .then(call =>
-                   console.log(JSON.stringify(call)); 
+                   //console.log(JSON.stringify(call)); 
                    sessionHandler.setSession(phone, teneoSessionId)   
                 );
                 //teneoSessionId = sessionHandler.getSession(phone);
