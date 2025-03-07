@@ -602,7 +602,7 @@ const sessionHandler = this.SessionHandler();
                 //const callSid = post.CallSid;
                 outboundCall = true;
                 //const url = "https://" + req.headers["host"] + "/?phone="+phone+"&session="+teneoSessionId+"&contractNum="+contractNum+"&email="+email+"&userInput="+userInput+"&arrears="+arrears+"&fname="+fname+"&numMissed="+numMissed+"&daysSince="+daysSince;
-               const url = "https://" + req.headers["host"] + "/&userInput="+userInput;
+               const url = "https://" + req.headers["host"] + "/?userInput="+userInput;
                 console.log("URL: " + url);
                 client.calls
                 .create({
