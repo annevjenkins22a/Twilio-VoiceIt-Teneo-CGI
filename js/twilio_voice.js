@@ -7,6 +7,7 @@ const TIE = require('@artificialsolutions/tie-api-client');
 const dotenv = require('dotenv');
 dotenv.config();
 const sessionMap = new Map();
+const inputMap = new Map();
 var outboundCall = false;
 
 const {
@@ -156,6 +157,7 @@ class twilio_voice {
     // handle incoming twilio message
     handleInboundCalls() {
 const sessionHandler = this.SessionHandler();
+const inputHandler = this.InputHandler();
         
 
         return async (req, res) => {
@@ -322,15 +324,16 @@ const sessionHandler = this.SessionHandler();
                 console.log("Phone: " + phone);
 
                 // check if we have stored an engine sessionid for this caller
-               /*if(userInput==undefined || userInput=="") {
-                    console.log(`REQUEST (flattened):`);
+               if(userInput==undefined || userInput=="") {
+                   userInput = inputHandler.getInput(phone);
+                    /*console.log(`REQUEST (flattened):`);
                     console.log(_stringify(req));            
                     //console.log("body: " );
                     //console.log(_stringify(req.body));
                    res.writeHead(200, {'Content-Type': 'text/xml'});
                     res.end();
-                   return;
-               }*/
+                   return;*/
+               }
                 
                 teneoSessionId = sessionHandler.getSession(phone);
                 if(teneoSessionId=="" || teneoSessionId==undefined) {
@@ -602,7 +605,7 @@ const sessionHandler = this.SessionHandler();
                 //const callSid = post.CallSid;
                 outboundCall = true;
                 //const url = "https://" + req.headers["host"] + "/?phone="+phone+"&session="+teneoSessionId+"&contractNum="+contractNum+"&email="+email+"&userInput="+userInput+"&arrears="+arrears+"&fname="+fname+"&numMissed="+numMissed+"&daysSince="+daysSince;
-               const url = "https://" + req.headers["host"] + "/?userInput="+userInput;
+               const url = "https://" + req.headers["host"] + "/";
                 console.log("URL: " + url);
                 client.calls
                 .create({
@@ -614,7 +617,9 @@ const sessionHandler = this.SessionHandler();
                    //console.log(JSON.stringify(call)); 
                    sessionHandler.setSession(phone, teneoSessionId)   
                 );
-                //teneoSessionId = sessionHandler.getSession(phone);
+                teneoSessionId = sessionHandler.getSession(phone);
+                console.log("session: " + teneoSessionId);
+                inputHandler.setInput(userInput);
                 res.writeHead(200, {'Content-Type': 'text/xml'});
                 res.end();  
             }
@@ -689,6 +694,28 @@ SessionHandler() {
             },
             clearSession: (userId) => {
                  sessionMap.delete(userId);
+            }
+        };
+    }
+
+    InputHandler() {
+      
+
+        return {
+            getInput: (userId) => {
+                if (inputMap.size > 0) {
+                    return inputMap.get(userId);
+                }
+                else {
+                    return "";
+                }
+            },
+            setInput: (userId, sessionId) => {
+                inputMap.delete(userId);
+                inputMap.set(userId, sessionId);
+            },
+            clearInput: (userId) => {
+                 inputMap.delete(userId);
             }
         };
     }
