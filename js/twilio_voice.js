@@ -326,6 +326,7 @@ const inputHandler = this.InputHandler();
                 // check if we have stored an engine sessionid for this caller
                if(userInput==undefined || userInput=="") {
                    userInput = inputHandler.getInput(phone);
+                   console.log("userInput from Handler: " + userInput);
                     /*console.log(`REQUEST (flattened):`);
                     console.log(_stringify(req));            
                     //console.log("body: " );
