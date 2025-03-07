@@ -621,7 +621,7 @@ const inputHandler = this.InputHandler();
                 );
                 teneoSessionId = sessionHandler.getSession(phone);
                 console.log("session: " + teneoSessionId);
-                inputHandler.setInput(userInput);
+                inputHandler.setInput(phone, userInput);
                 res.writeHead(200, {'Content-Type': 'text/xml'});
                 res.end();  
             }
