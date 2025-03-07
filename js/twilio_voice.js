@@ -327,6 +327,9 @@ const inputHandler = this.InputHandler();
                if(userInput==undefined || userInput=="") {
                    userInput = inputHandler.getInput(phone);
                    console.log("userInput from Handler: " + userInput);
+                   if(userInput==undefined) {
+                        userInput="";
+                   }
                     /*console.log(`REQUEST (flattened):`);
                     console.log(_stringify(req));            
                     //console.log("body: " );
