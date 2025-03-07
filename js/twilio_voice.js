@@ -497,6 +497,7 @@ const inputHandler = this.InputHandler();
 
     handleOutboundCalls() {
   const sessionHandler = this.SessionHandler();
+    const inputHandler = this.InputHandler();
         return async (req, res) => {
              var TWILIO_MODE = "ivr";   
             const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
