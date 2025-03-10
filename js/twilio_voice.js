@@ -161,7 +161,7 @@ const inputHandler = this.InputHandler();
         
 
         return async (req, res) => {
-            console.log("INBOUND START " );
+            //console.log("INBOUND START " );
             let body = '';
 
             req.on('data', function (data) {
@@ -239,7 +239,7 @@ const inputHandler = this.InputHandler();
                 if(contractNum===undefined) {
                     contractNum = "";
                 }
-                console.log("contractNum: " + contractNum);
+                //console.log("contractNum: " + contractNum);
          
                 if(arrears===undefined) {
                     arrears = "";
@@ -266,13 +266,13 @@ const inputHandler = this.InputHandler();
                 }
                 //console.log("email: " + email);  
               
-            console.log("Passed session: " + passedSessionId);
+            //console.log("Passed session: " + passedSessionId);
             if(passedSessionId===undefined || passedSessionId===null || passedSessionId=="") {
                 teneoSessionId=""
             }
             else {
                 teneoSessionId=passedSessionId;   
-                 console.log("session: " + teneoSessionId);
+                 //console.log("session: " + teneoSessionId);
                 //userInput = "switchoversuccess"; 
                 sessionHandler.setSession(phone, teneoSessionId);
             }       
@@ -289,10 +289,10 @@ const inputHandler = this.InputHandler();
                         TWILIO_MODE="sms";
                     }
                 }
-                console.log("mode: " + TWILIO_MODE);  
+                //console.log("mode: " + TWILIO_MODE);  
             if((post.From!= TWILIO_OUTBOUND_NUMBER_WA && post.From!=TWILIO_OUTBOUND_NUMBER) || TWILIO_MODE=="ivr") {
   
-                console.log("contractNum: " + contractNum);
+                //console.log("contractNum: " + contractNum);
             // get message from user
                 if(post.Body!==undefined && !post.SpeechResult) {
                     userInput = post.Body;
@@ -342,16 +342,16 @@ const inputHandler = this.InputHandler();
                 teneoSessionId = sessionHandler.getSession(phone);
                 if(teneoSessionId=="" || teneoSessionId==undefined) {
                    var checkphone=phone.replace("whatsapp:","");
-                    console.log("checkphone: " + checkphone);
+                    //console.log("checkphone: " + checkphone);
                     teneoSessionId = sessionHandler.getSession(checkphone);
                     if(teneoSessionId==""  || teneoSessionId==undefined) {
                         checkphone="whatsapp:" + phone;
                          teneoSessionId = sessionHandler.getSession(checkphone);
-                        console.log("checkphone: " + checkphone);
+                        //console.log("checkphone: " + checkphone);
                     }
                 }
-                console.log("session ID retrieved: " + teneoSessionId);
-                console.log("mode in inbound: " + TWILIO_MODE);        
+                //console.log("session ID retrieved: " + teneoSessionId);
+                //console.log("mode in inbound: " + TWILIO_MODE);        
 
                 var parameters = {};
                 // Detect digit input from the user, add additional if statement to capture timeout
@@ -365,7 +365,7 @@ const inputHandler = this.InputHandler();
                     parameters["url"] = post.RecordingUrl;
                 }
                 var MediaUrl0 = post.MediaUrl0;   
-                console.log(`MURL: ${MediaUrl0}`);
+                //console.log(`MURL: ${MediaUrl0}`);
                 parameters["phone"] = phone;
                 if(MediaUrl0===undefined){
                     MediaUrl0="";
@@ -415,7 +415,7 @@ const inputHandler = this.InputHandler();
                 if(twilioAction === postPath.default || twilioAction==undefined || twilioAction=="") {
                     twilioAction = twilioActions.gather_default;
                 }
-                console.log("twilioAction: " + twilioAction);
+                //console.log("twilioAction: " + twilioAction);
                 switch (twilioAction) {
 
                     // Twilio action to handle voice inputs by end-user, speaking to the end user and then capturing the voice subsequently.
@@ -556,7 +556,7 @@ const inputHandler = this.InputHandler();
             const url = "https://" + req.headers["host"] + "/";
             console.log("URL: " + url);
             if(userInput===undefined || userInput===null || userInput=="") {
-              userInput="Hi";
+              userInput="";
             }
              console.log("userInput: " + userInput);
             if(contractNum===undefined) {
