@@ -370,7 +370,8 @@ const inputHandler = this.InputHandler();
                 if(MediaUrl0===undefined){
                     MediaUrl0="";
                 }
-  
+                var respondToUser="";
+               if(userInput!="WAIT_FOR_SPEECH") {
                 var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0};
                 
                 if(post.From==TWILIO_OUTBOUND_NUMBER && req.query["contractNum"]!==undefined) {
@@ -408,8 +409,11 @@ const inputHandler = this.InputHandler();
                         }
                     }
                 }
+                   respondToUser = teneoResponse.output.text;
+               }
+                console.log("TENEO RESPONSE: " + respondToUser);
+                   
                
-                console.log("TENEO RESPONSE: " + teneoResponse.output.text);
                  if(TWILIO_MODE=="ivr") {
                     sessionHandler.setSession(phone, teneoSessionId);
                 if(twilioAction === postPath.default || twilioAction==undefined || twilioAction=="") {
@@ -433,7 +437,7 @@ const inputHandler = this.InputHandler();
                         }).say({
                             voice: twilioVoiceName,
                             language: twilioLanguage
-                        }, teneoResponse.output.text);
+                        }, respondToUser);
                         res.writeHead(200, {'Content-Type': 'text/xml'});
                         res.end(twiml.toString());
                         break;
@@ -444,7 +448,7 @@ const inputHandler = this.InputHandler();
                         twiml.say({
                             voice: twilioVoiceName,
                             language: twilioLanguage
-                        }, teneoResponse.output.text);
+                        }, respondToUser);
                         twiml.record({
                             action: postPath.default,
                             maxLength: 4,
@@ -459,7 +463,7 @@ const inputHandler = this.InputHandler();
                         twiml.say({
                             voice: twilioVoiceName,
                             language: twilioLanguage
-                        }, teneoResponse.output.text);
+                        }, respondToUser);
                         twiml.hangup();
                         res.writeHead(200, {'Content-Type': 'text/xml'});
                         res.end(twiml.toString());
@@ -556,7 +560,7 @@ const inputHandler = this.InputHandler();
             const url = "https://" + req.headers["host"] + "/";
             console.log("URL: " + url);
             if(userInput===undefined || userInput===null || userInput=="") {
-              userInput="";
+              userInput="WAIT_FOR_SPEECH";
             }
              console.log("userInput: " + userInput);
             if(contractNum===undefined) {
