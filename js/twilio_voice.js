@@ -370,7 +370,7 @@ const inputHandler = this.InputHandler();
                 if(MediaUrl0===undefined){
                     MediaUrl0="";
                 }
-                var respondToUser="";
+                var respondToUser="Hi!";
                if(userInput!="WAIT_FOR_SPEECH") {
                 var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0};
                 
@@ -430,7 +430,7 @@ const inputHandler = this.InputHandler();
                             action: postPath.default,
                             actionOnEmptyResult: false,
                             language: twilioLanguage,
-                            timeout: 5,
+                            timeout: 6,
                             speechModel: "phone_call",
                             speechTimeout: "auto",
                             hints: hintText
