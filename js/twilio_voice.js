@@ -430,9 +430,8 @@ const inputHandler = this.InputHandler();
                             action: postPath.default,
                             actionOnEmptyResult: false,
                             language: twilioLanguage,
-                            timeout: 6,
+                            timeout: 4,
                             speechModel: "phone_call",
-                            speechTimeout: "auto",
                             hints: hintText
                         }).say({
                             voice: twilioVoiceName,
