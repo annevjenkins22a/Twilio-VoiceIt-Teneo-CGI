@@ -387,6 +387,7 @@ const inputHandler = this.InputHandler();
                 
                 
                 // Add "_phone" to as key to session to make each session, regardless when using call/sms
+                   console.log("Session ID in inbound call to Teneo: " +  teneoSessionId );
                     teneoResponse = await teneoApi.sendInput(teneoSessionId, contentToTeneo);
                 teneoSessionId = teneoResponse.sessionId;
                 console.log("Session ID in inbound response: " +  teneoSessionId );
