@@ -417,6 +417,10 @@ const inputHandler = this.InputHandler();
                }
                 console.log("TENEO RESPONSE: " + respondToUser);
                  console.log("TENEO RESPONSE: " + _stringify(teneoResponse));  
+                if(respondToUser==="") {
+                    respondToUser = "Pardonnez-moi! Je n'ai pas bien entendu.";
+                     console.log("EMPTY RESPONSE - SENDING DEFAULT INSTEAD");
+                }
                
                  if(TWILIO_MODE=="ivr") {
                     sessionHandler.setSession(phone, teneoSessionId);
