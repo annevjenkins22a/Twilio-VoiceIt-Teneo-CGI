@@ -383,7 +383,7 @@ const inputHandler = this.InputHandler();
                                          , "arrearsAmt":arrears , "arrearsName":fname , "numMissed":numMissed, "daysSince":daysSince, "contractEmail":email};
                 }
 
-                //console.log("Content to Teneo INBOUND: " + JSON.stringify(contentToTeneo).toString());
+                console.log("Content to Teneo INBOUND: " + JSON.stringify(contentToTeneo).toString());
                 
                 
                 // Add "_phone" to as key to session to make each session, regardless when using call/sms
