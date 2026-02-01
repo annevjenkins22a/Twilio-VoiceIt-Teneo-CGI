@@ -377,7 +377,7 @@ const inputHandler = this.InputHandler();
                 }
                 var respondToUser="Hi!";
                if(userInput!="WAIT_FOR_SPEECH") {
-                var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0};
+                var contentToTeneo = {'viewtype':'tieapi','text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0};
                 
                 if(post.From==TWILIO_OUTBOUND_NUMBER && req.query["contractNum"]!==undefined) {
                    contentToTeneo = {'viewtype':'tieapi','text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0, "refNum":contractNum
