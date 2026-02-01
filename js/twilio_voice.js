@@ -416,7 +416,7 @@ const inputHandler = this.InputHandler();
                    respondToUser = teneoResponse.output.text;
                }
                 console.log("TENEO RESPONSE: " + respondToUser);
-                   
+                 console.log("TENEO RESPONSE: " + _stringify(teneoResponse));  
                
                  if(TWILIO_MODE=="ivr") {
                     sessionHandler.setSession(phone, teneoSessionId);
