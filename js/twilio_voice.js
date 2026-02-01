@@ -380,7 +380,7 @@ const inputHandler = this.InputHandler();
                 var contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0};
                 
                 if(post.From==TWILIO_OUTBOUND_NUMBER && req.query["contractNum"]!==undefined) {
-                   contentToTeneo = {'text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0, "refNum":contractNum
+                   contentToTeneo = {'viewtype':'tieapi','text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0, "refNum":contractNum
                                          , "arrearsAmt":arrears , "arrearsName":fname , "numMissed":numMissed, "daysSince":daysSince, "contractEmail":email};
                 }
 
@@ -393,12 +393,12 @@ const inputHandler = this.InputHandler();
 const response = await fetch( TENEO_ENGINE_URL, {
   method: "POST",
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json; charset=UTF-8",
     "viewtype": "tieapi",
     "Cookie": teneoSessionId,
     "X-Teneo-Session": teneoSessionId
   },
-  body: JSON.stringify(contentToTeneo)
+  body: contentToTeneo
 });
 teneoResponse = await response.json();
 console.log(_stringify(teneoResponse));
