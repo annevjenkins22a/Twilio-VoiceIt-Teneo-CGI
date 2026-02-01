@@ -394,6 +394,7 @@ const response = await fetch( TENEO_ENGINE_URL, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "viewtype": "tieapi",
     "Cookie": teneoSessionId,
     "X-Teneo-Session": teneoSessionId
   },
