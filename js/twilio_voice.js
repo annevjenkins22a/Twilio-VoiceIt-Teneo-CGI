@@ -403,12 +403,14 @@ const response = await fetch( TENEO_ENGINE_URL, {
 teneoResponse = await response.json();
 console.log(_stringify(teneoResponse));
 var xgs = response.headers.get("X-Gateway-Session");
+ const result =  xgs.slice( xgs.indexOf(";") + 1);
 var sessionId=teneoResponse.sessionId;
- console.log("xgs=" + xgs);
-if(teneoSessionId.includes(xgs)) {
+ console.log("xgs=" + result);
+if(teneoSessionId.includes("ApplicationGatewayAffinityCORS")) {
+    console.log("keeping teneoSessionId=" + teneoSessionId);
 }
 else {
-    teneoSessionId="JSESSIONID="+sessionId+";"+xgs
+    teneoSessionId="JSESSIONID="+sessionId+";"+result
      console.log("setting teneoSessionId=" + teneoSessionId);
 }
 
