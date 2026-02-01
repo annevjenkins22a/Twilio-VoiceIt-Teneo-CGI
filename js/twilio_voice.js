@@ -404,7 +404,7 @@ teneoResponse = await response.json();
 console.log(_stringify(teneoResponse));
 var xgs = response.headers.get("X-Gateway-Session");
 var sessionId=teneoResponse.sessionId;
- console.log("xgs=" + result);
+ console.log("xgs=" + xgs);
 if(teneoSessionId.includes("ApplicationGatewayAffinityCORS")) {
     console.log("keeping teneoSessionId=" + teneoSessionId);
 }
