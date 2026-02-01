@@ -9,7 +9,7 @@ dotenv.config();
 const sessionMap = new Map();
 const inputMap = new Map();
 var outboundCall = false;
-var request = require('request');
+
 
 const {
     TENEO_ENGINE_URL,
