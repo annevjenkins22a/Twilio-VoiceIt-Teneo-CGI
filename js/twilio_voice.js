@@ -383,7 +383,7 @@ const inputHandler = this.InputHandler();
                    contentToTeneo = {'viewtype':'tieapi','text': userInput, "parameters": JSON.stringify(parameters), "channel":channel, "mediaurl":MediaUrl0, "refNum":contractNum
                                          , "arrearsAmt":arrears , "arrearsName":fname , "numMissed":numMissed, "daysSince":daysSince, "contractEmail":email};
                 }
-
+                contentToTeneo= JSON.stringify({'viewtype':'tieapi','text': userInput, "channel":channel});
                 console.log("Content to Teneo INBOUND: " + JSON.stringify(contentToTeneo).toString());
                 
                 
