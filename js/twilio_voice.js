@@ -9,6 +9,7 @@ dotenv.config();
 const sessionMap = new Map();
 const inputMap = new Map();
 var outboundCall = false;
+var request = require('request');
 
 const {
     TENEO_ENGINE_URL,
@@ -388,8 +389,30 @@ const inputHandler = this.InputHandler();
                 
                 // Add "_phone" to as key to session to make each session, regardless when using call/sms
                    console.log("Session ID in inbound call to Teneo: " +  teneoSessionId );
-                    teneoResponse = await teneoApi.sendInput(teneoSessionId, contentToTeneo);
-                teneoSessionId = teneoResponse.sessionId;
+
+const response = await fetch( TENEO_ENGINE_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Cookie": teneoSessionId,
+    "X-Teneo-Session": teneoSessionId
+  },
+  body: JSON.stringify(contentToTeneo)
+});
+teneoResponse = await response.json();
+console.log(_stringify(teneoResponse));
+var xgs = response.headers.get("X-Gateway-Session");
+var sessionId=teneoResponse.sessionId;
+ console.log("xgs=" + xgs);
+if(teneoSessionId.includes(xgs)) {
+}
+else {
+    teneoSessionId="JSESSIONID="+sessionId+";"+xgs
+     console.log("setting teneoSessionId=" + teneoSessionId);
+}
+
+                 //   teneoResponse = await teneoApi.sendInput(teneoSessionId, contentToTeneo);
+                //teneoSessionId = teneoResponse.sessionId;
                 console.log("Session ID in inbound response: " +  teneoSessionId );
                 var hintMode = "";
                 var hintText;
