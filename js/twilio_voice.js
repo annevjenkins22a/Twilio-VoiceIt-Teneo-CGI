@@ -181,7 +181,7 @@ const inputHandler = this.InputHandler();
             var numMissed;
             var daysSince;
             var email;
-            var callSID;
+            
             /*     console.log("req: " );
             console.log(_stringify(req));
                 console.log("req.body: " );
@@ -206,9 +206,7 @@ const inputHandler = this.InputHandler();
             passedSessionId=req.query["session"];
             const params = qs.parse(body);
             const callSid = params.CallSid;
-
-            //callSID = req.query["CallSid"];     
-            //const callSid = req.body.CallSid;    
+  
             console.log("callSID=" + callSid);
             userInput = req.query["userInput"];   
             mode = req.query["mode"];
@@ -311,7 +309,7 @@ const inputHandler = this.InputHandler();
                 var channel = TWILIO_MODE;
                 console.log("Passed session in inbound: " + passedSessionId);
                 if(passedSessionId===undefined || passedSessionId===null || passedSessionId=="") {
-                    teneoSessionId=sessionHandler.getSession(phone);
+                    teneoSessionId=sessionHandler.getSession(callSid);
                     console.log("session INB 1: " + teneoSessionId);
                     if(teneoSessionId===undefined || teneoSessionId===null || teneoSessionId=="") {
                         teneoSessionId="";
@@ -461,7 +459,7 @@ else if(xgs!=null){
                 }
                
                  if(TWILIO_MODE=="ivr") {
-                    sessionHandler.setSession(phone, teneoSessionId);
+                    sessionHandler.setSession(callSid, teneoSessionId);
                 if(twilioAction === postPath.default || twilioAction==undefined || twilioAction=="") {
                     twilioAction = twilioActions.gather_default;
                 }
