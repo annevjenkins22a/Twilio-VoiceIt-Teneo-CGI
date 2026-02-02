@@ -1,5 +1,5 @@
 "use strict";
-import querystring from "querystring";
+
 const qs = require('querystring');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
@@ -204,7 +204,7 @@ const inputHandler = this.InputHandler();
             else {*/
             phone = req.query["phone"];     
             passedSessionId=req.query["session"];
-            const params = querystring.parse(req.body);
+            const params = qs.parse(req.body);
             const callSid = params.CallSid;
 
             callSID = req.query["CallSid"];     
