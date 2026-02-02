@@ -276,8 +276,8 @@ const inputHandler = this.InputHandler();
                     
             var TWILIO_MODE = "ivr";   
                  // get the caller id
-                const callSid = post.CallSid;
-                if(callSid===undefined) {
+                const callSID = post.CallSid;
+                if(callSID===undefined) {
                     if(post.From== TWILIO_OUTBOUND_NUMBER_WA || post.To==TWILIO_OUTBOUND_NUMBER_WA) {
                         TWILIO_MODE="whatsapp";
                     }
@@ -319,7 +319,7 @@ const inputHandler = this.InputHandler();
                     teneoSessionId=passedSessionId;   
                     console.log("session INB 1b: " + teneoSessionId);
                     //userInput = "switchoversuccess"; 
-                    sessionHandler.setSession(phone, teneoSessionId);
+                    sessionHandler.setSession(callSid, teneoSessionId);
                 }       
              console.log("Session after phone lookup INB: " + teneoSessionId);        
                  if(TWILIO_MODE=="whatsapp") {
@@ -349,7 +349,7 @@ const inputHandler = this.InputHandler();
                    return;*/
                }
                 
-                teneoSessionId = sessionHandler.getSession(phone);
+                teneoSessionId = sessionHandler.getSession(callSid);
                 if(teneoSessionId=="" || teneoSessionId==undefined) {
                    var checkphone=phone.replace("whatsapp:","");
                     console.log("checkphone: " + checkphone);
@@ -360,8 +360,8 @@ const inputHandler = this.InputHandler();
                         console.log("checkphone2: " + checkphone);
                     }
                 }
-                //console.log("session ID retrieved: " + teneoSessionId);
-                //console.log("mode in inbound: " + TWILIO_MODE);        
+                //console.log("session ID retrieved finally: " + teneoSessionId);
+                console.log("mode in inbound: " + TWILIO_MODE);        
 
                 var parameters = {};
                 // Detect digit input from the user, add additional if statement to capture timeout
