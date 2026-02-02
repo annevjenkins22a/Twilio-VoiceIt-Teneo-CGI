@@ -182,11 +182,12 @@ const inputHandler = this.InputHandler();
             var daysSince;
             var email;
             var callSID;
-                
-             /*   console.log("req.body: " );
+                 console.log("req: " );
+            console.log(_stringify(req));
+                console.log("req.body: " );
             console.log(_stringify(req.body));
                 console.log("body: " );
-            console.log(_stringify(body));*/
+            console.log(_stringify(body));
             
             /*if(req.body!=undefined && req.body.phone!=undefined && req.body.mode!=undefined) {
                 userInput = req.body.userInput;
