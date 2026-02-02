@@ -181,6 +181,7 @@ const inputHandler = this.InputHandler();
             var numMissed;
             var daysSince;
             var email;
+            var callSID;
                 
              /*   console.log("req.body: " );
             console.log(_stringify(req.body));
@@ -202,7 +203,8 @@ const inputHandler = this.InputHandler();
             else {*/
             phone = req.query["phone"];     
             passedSessionId=req.query["session"];  
-              
+            callSID = req.query["CallSid"];     
+            console.log("callSID=" + callSID);
             userInput = req.query["userInput"];   
             mode = req.query["mode"];
      
