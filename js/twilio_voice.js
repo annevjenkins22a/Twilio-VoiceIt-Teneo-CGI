@@ -410,7 +410,7 @@ console.log(_stringify(teneoResponse));
 var xgs = response.headers.get("X-Gateway-Session");
 var sessionId=teneoResponse.sessionId;
  console.log("xgs=" + xgs);
-if(teneoSessionId.includes("ApplicationGatewayAffinityCORS")) {
+if(teneoSessionId!==null && teneoSessionId.includes("ApplicationGatewayAffinityCORS")) {
     console.log("keeping teneoSessionId=" + teneoSessionId);
 }
 else if(xgs!=null){
