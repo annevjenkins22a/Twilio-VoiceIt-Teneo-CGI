@@ -204,7 +204,8 @@ const inputHandler = this.InputHandler();
             phone = req.query["phone"];     
             passedSessionId=req.query["session"];  
             callSID = req.query["CallSid"];     
-            console.log("callSID=" + callSID);
+            const callSid = req.body.CallSid;    
+            console.log("callSID=" + callSid);
             userInput = req.query["userInput"];   
             mode = req.query["mode"];
      
