@@ -204,10 +204,10 @@ const inputHandler = this.InputHandler();
             else {*/
             phone = req.query["phone"];     
             passedSessionId=req.query["session"];
-            const params = qs.parse(req.body);
+            const params = qs.parse(body);
             const callSid = params.CallSid;
 
-            callSID = req.query["CallSid"];     
+            //callSID = req.query["CallSid"];     
             //const callSid = req.body.CallSid;    
             console.log("callSID=" + callSid);
             userInput = req.query["userInput"];   
