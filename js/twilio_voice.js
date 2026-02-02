@@ -1,5 +1,5 @@
 "use strict";
-
+import querystring from "querystring";
 const qs = require('querystring');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
@@ -182,12 +182,12 @@ const inputHandler = this.InputHandler();
             var daysSince;
             var email;
             var callSID;
-                 console.log("req: " );
+            /*     console.log("req: " );
             console.log(_stringify(req));
                 console.log("req.body: " );
             console.log(_stringify(req.body));
                 console.log("body: " );
-            console.log(_stringify(body));
+            console.log(_stringify(body));*/
             
             /*if(req.body!=undefined && req.body.phone!=undefined && req.body.mode!=undefined) {
                 userInput = req.body.userInput;
@@ -203,10 +203,13 @@ const inputHandler = this.InputHandler();
             }
             else {*/
             phone = req.query["phone"];     
-            passedSessionId=req.query["session"];  
+            passedSessionId=req.query["session"];
+            const params = querystring.parse(req.body);
+            const callSid = params.CallSid;
+
             callSID = req.query["CallSid"];     
             //const callSid = req.body.CallSid;    
-            console.log("callSID=" + callSID);
+            console.log("callSID=" + callSid);
             userInput = req.query["userInput"];   
             mode = req.query["mode"];
      
